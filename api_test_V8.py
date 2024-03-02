@@ -382,8 +382,8 @@ def main():
     Age = st.slider("Quel age as tu ?", 21, 100)
 
     input_data = (Pregnancies,	Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age	)
+    
     scaler = StandardScaler()
-
     scaler.fit(np.array(input_data).reshape(-1, 1))
 
     normalized_input = scaler.transform(np.array(input_data).reshape(-1, 1))
