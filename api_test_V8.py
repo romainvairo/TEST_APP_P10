@@ -338,8 +338,8 @@ import tabpfn
 # pickle_file = open("lr.pkl", "rb")
 # loaded_model = pickle.load(pickle_file)
 
-with open('tabpfn.pkl', 'rb') as f:
-    loaded_model = pickle.load(f)
+# with open('tabpfn.pkl', 'rb') as f:
+#     loaded_model = pickle.load(f)
 
 # # --------------------------------------------------------------------------
 
