@@ -100,7 +100,7 @@ apply_custom_color_background(custom_color_background)
 
 # --------------------------------------------------------------------------
 
-font_size = st.sidebar.slider("Choisir la taille de la police d'écriture des textes", 2, 30, 16)
+font_size = st.sidebar.slider("Choisir la taille de la police d'écriture des textes", 2, 32, 16)
 
 def apply_custom_font_size(font_size):
     custom_css = f"""
@@ -259,7 +259,7 @@ my_choice_7 = st.selectbox(
 
 
 fig = px.histogram(data, x=my_choice_7, color="Outcome")
-fig.update_layout(title="Histogramme des colonnes du dataframe",
+fig.update_layout(title="Histogramme d'une colonne",
                   title_x=0.3,
                   title_font_size=font_size,
                   xaxis=dict(title_font=dict(size=font_size)),  # Taille de la police de l'axe x
@@ -284,7 +284,7 @@ df = data.astype({"Outcome" : str})
 fig = px.scatter(df, x=my_choice_5, y=my_choice_6, color="Outcome",
                  hover_data=[ "BMI", "Insulin", "BloodPressure", "Age", "Glucose", "Pregnancies", 'SkinThickness','DiabetesPedigreeFunction'])
 
-fig.update_layout(title="scatter plot de 2 colonnes du dataframe",
+fig.update_layout(title="scatter plot de 2 colonnes",
                   title_x=0.3,
                   title_font_size=font_size,
                   xaxis=dict(title_font=dict(size=font_size)),  # Taille de la police de l'axe x
@@ -298,32 +298,32 @@ st.write("")
 
 my_choice_8 = st.selectbox(
     'Choisissez une colonne pour visualiser les modèles utilisés, leur courbe ROC, matrice de confusion, métriques, interprétabilité local et global',
-     ['', 'Lightgbm', "RegressionLogistique", "TabPFN"])
+     ['', 'Lightgbm', "RegressionLogistique", "TabPFN"], help="Choisir un modèle pour le visualiser grâce à des graphiques")
 
 if my_choice_8 == '':
     st.write("")
 
 if my_choice_8 == "Lightgbm":
 
-    st.image("image_p10/lightgbm_auc_roc.png", caption = "", width=700)
-    st.caption("<p style='text-align: center;'>image auc-roc 0.852 Lightgbm", unsafe_allow_html=True)
+    st.image("image_p10/lgbm-roc.png", caption = "", width=700)
+    st.caption("<p style='text-align: center;'>image auc-roc 0.856 Lightgbm", unsafe_allow_html=True)
     st.write("")
     st.write("")
     st.write("")
-    st.image("image_p10/lightgbm_confusion_matrice.png", caption = "", width=700)
+    st.image("image_p10/lgbm-matrice.png", caption = "", width=700)
     st.caption("<p style='text-align: center;'>image confusion matrice Lightgbm", unsafe_allow_html=True)
     st.write("")
     st.write("")
     st.write("")
-    st.image("image_p10/lightgbm_lime.png", caption = "", width=1150)
+    st.image("image_p10/lgbm-lime.png", caption = "", width=1000)
     st.caption("<p style='text-align: center;'>image LIME Lightgbm", unsafe_allow_html=True)
     st.write("")
     st.write("")
     st.write("")
-    st.image("image_p10/lightgbm_shap.png", caption = "", width=700)
+    st.image("image_p10/lgbm-shap.png", caption = "", width=700)
     st.caption("<p style='text-align: center;'>image SHAPE Lightgbm", unsafe_allow_html=True)
     df = {"Métriques et temps d'entraînement": ['AUC ROC', 'Accuracy', "Temps d'entraînement"],
-            'Valeur': [0.852, 0.785, 0.1573]}
+            'Valeur': [0.856, 0.8, 0.186]}
     df = pd.DataFrame(df)
     st.write("")
     st.write("")
@@ -337,25 +337,25 @@ if my_choice_8 == "Lightgbm":
 
 if my_choice_8 == "RegressionLogistique":
 
-    st.image("image_p10/regression_logistique_auc_roc.png", caption = "", width=700)
-    st.caption("<p style='text-align: center;'>image auc-roc 0.846 Regression Logistique", unsafe_allow_html=True)
+    st.image("image_p10/regression-roc.png", caption = "", width=700)
+    st.caption("<p style='text-align: center;'>image auc-roc 0.830 Regression Logistique", unsafe_allow_html=True)
     st.write("")
     st.write("")
     st.write("")
-    st.image("image_p10/regression_logistique_confusion_matrice.png", caption = "", width=700)
+    st.image("image_p10/regression-matrice.png", caption = "", width=700)
     st.caption("<p style='text-align: center;'>image confusion matrice Logistique", unsafe_allow_html=True)
     st.write("")
     st.write("")
     st.write("")
-    st.image("image_p10/regression_logistique_lime.png", caption = "", width=1150)
+    st.image("image_p10/regression-lime.png", caption = "", width=1000)
     st.caption("<p style='text-align: center;'>image LIME Logistique", unsafe_allow_html=True)
     st.write("")
     st.write("")
     st.write("")
-    st.image("image_p10/regression_logistique_shap.png", caption = "", width=700)
+    st.image("image_p10/regression-shap.png", caption = "", width=700)
     st.caption("<p style='text-align: center;'>image SHAPE Logistique", unsafe_allow_html=True)
     df = {"Métriques et temps d'entraînement": ['AUC ROC', 'Accuracy', "Temps d'entraînement"],
-            'Valeur': [0.846, 0.755, 0.0059]}
+            'Valeur': [0.830, 0.750, 0.014]}
     df = pd.DataFrame(df)
     st.write("")
     st.write("")
@@ -369,25 +369,25 @@ if my_choice_8 == "RegressionLogistique":
 
 if my_choice_8 == "TabPFN":
 
-    st.image("image_p10/tabpfn_auc_roc.png", caption = "", width=700)
-    st.caption("<p style='text-align: center;'>image auc-roc 0.871 TabPFN", unsafe_allow_html=True)
+    st.image("image_p10/tabpfn-roc.png", caption = "", width=700)
+    st.caption("<p style='text-align: center;'>image auc-roc 0.882 TabPFN", unsafe_allow_html=True)
     st.write("")
     st.write("")
     st.write("")
-    st.image("image_p10/tabpfn_confusion_matrice.png", caption = "", width=700)
+    st.image("image_p10/tabpfn-matrice.png", caption = "", width=700)
     st.caption("<p style='text-align: center;'>image confusion matrice TabPFN", unsafe_allow_html=True)
     st.write("")
     st.write("")
     st.write("")
-    st.image("image_p10/tabpfn_lime.png", caption = "", width=1150)
+    st.image("image_p10/tabpfn-lime.png", caption = "", width=1000)
     st.caption("<p style='text-align: center;'>image LIME TabPFN", unsafe_allow_html=True)
     st.write("")
     st.write("")
     st.write("")
-    st.image("image_p10/tabpfn_shap.png", caption = "", width=700)
+    st.image("image_p10/tabpfn-shap.png", caption = "", width=700)
     st.caption("<p style='text-align: center;'>image SHAPE TabPFN", unsafe_allow_html=True)
     df = {"Métriques et temps d'entraînement": ['AUC ROC', 'Accuracy', "Temps d'entraînement"],
-            'Valeur': [0.871, 0.795, 0.0030]}
+            'Valeur': [0.882, 0.815, 0.010]}
     df = pd.DataFrame(df)
     st.write("")
     st.write("")
@@ -452,12 +452,12 @@ def main():
 
     Pregnancies = st.slider("Quel est le nombre de fois où tu es tombé enceinte ?", 0, 17, help="Sélectionne le nombre de fois où tu es tombé enceinte")
     Glucose = st.slider("Quel est ton taux de glucose ?", 0, 199, help="Sélectionne ton taux de glucose")
-    BloodPressure = st.slider("Quelle est ta pression sanguine ?", 0, 130, help="Sélectionne ta pression sanguine")
-    SkinThickness = st.slider("Quelle est l'épaisseur de ta peau ?", 0, 100, help="Sélectionne l'épaisseur de ta peau")
-    Insulin = st.slider("Quel est ton taux d'insuline ?", 0, 200, help="Sélectionne ton taux d'insuline")
-    BMI = st.slider("Quel est ton indice de masse corporel ?", 0, 60, help="Sélectionne ton indice de masse corporel")
+    BloodPressure = st.slider("Quelle est ta pression sanguine ?", 0, 122, help="Sélectionne ta pression sanguine")
+    SkinThickness = st.slider("Quelle est l'épaisseur de ta peau ?", 0, 99, help="Sélectionne l'épaisseur de ta peau")
+    Insulin = st.slider("Quel est ton taux d'insuline ?", 0, 846, help="Sélectionne ton taux d'insuline")
+    BMI = st.slider("Quel est ton indice de masse corporel ?", 0, 67, help="Sélectionne ton indice de masse corporel")
     DiabetesPedigreeFunction = st.slider("Quel est le nombre de personnes diabétiques dans ta famille ?", 0, 3, help="Sélectionne le nombre de personnes diabétique dans ta famille")
-    Age = st.slider("Quel age as-tu ?", 21, 100, help="Sélectionne ton age")
+    Age = st.slider("Quel age as-tu ?", 21, 81, help="Sélectionne ton age")
 
     input_data = (Pregnancies,	Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age	)
     
@@ -473,9 +473,9 @@ def main():
     if st.button("predict"):
         updated_res = result.flatten().astype(int)
         if updated_res == 0:
-            st.markdown("<span style='color: white; background-color: green'>Vous êtes peu susceptible d'être diabétique</span>", unsafe_allow_html=True)
+            st.markdown("Vous êtes peu susceptible d'être diabétique <span style='color: white; background-color: green'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>", unsafe_allow_html=True)
         if updated_res == 1:
-            st.write("<span style='color: white; background-color: red'>Vous êtes susceptible d'être diabétique</span>", unsafe_allow_html=True)
+            st.write("Vous êtes susceptible d'être diabétique <span style='color: white; background-color: red'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>", unsafe_allow_html=True)
     
 if __name__ == '__main__':
     main()
